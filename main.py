@@ -24,10 +24,4 @@ def main():
   plaintext = aesgcm.decrypt(encrypted_packet[0], encrypted_packet[1], ciphertext, authentication)
   print(receiver, "got", plaintext)
 
-  # #Sign the Encrypted Message
-  # sign.get_signable(ciphertext)
-
-  # # check_sig.main()
-  # # sign.main()
-
 main()
