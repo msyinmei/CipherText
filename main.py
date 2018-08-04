@@ -8,12 +8,12 @@ def main():
   receiver = str(input("Who is receiving the message? "))
 
   #Key Generation to obtain derived key from X25519 + HKDF
-  derived_key = key_gen.handshake() 
+  derived_key = key_gen.handshake()
 
   #Message Encryption using derived_key as the key to AES GCM
   message = str(input("Please type the message you'd like to send: "))
-  #need to debug for python2, please uncomment for python3:
-  #message = bytes(message, 'utf-8')
+  message = (bytes(message, encoding='utf8') if not 
+  isinstance(message, bytes) else message)
   
   #Authentication needed here
   authentication = b"authenticated but unencrypted, HMAC?"
