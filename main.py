@@ -1,6 +1,9 @@
 import key_gen
 import aesgcm
 
+def utf8len(s):
+    return len(s.encode('utf-8'))
+
 def main():
   #Welcome
   print("Welcome to CipherText!")
@@ -15,13 +18,14 @@ def main():
   message = (bytes(message, encoding='utf8') if not 
   isinstance(message, bytes) else message)
   
-  #Authentication needed here
-  authentication = b"authenticated but unencrypted, HMAC?"
-  encrypted_packet = aesgcm.encrypt(derived_key, message, authentication)
+  #Authentication needed here to generate a 128 bit-length tag
+  auth_tag = b"authenticated but unencrypted, HMAC?"
+
+  encrypted_packet = aesgcm.encrypt(derived_key, message, auth_tag)
   ciphertext = encrypted_packet[2]
   print(sender, "sent", ciphertext)
 
-  plaintext = aesgcm.decrypt(encrypted_packet[0], encrypted_packet[1], ciphertext, authentication)
+  plaintext = aesgcm.decrypt(encrypted_packet[0], encrypted_packet[1], ciphertext, auth_tag)
   print(receiver, "got", plaintext)
 
 main()
