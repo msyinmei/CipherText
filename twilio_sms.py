@@ -9,10 +9,22 @@ from_num = AUTHKEYS.live_number
 to_num = AUTHKEYS.yin_number
 client = Client(account_sid, auth_token)
 
-message = client.messages.create(
-            body='Hello there!',
-            from_=from_num,
-            to=to_num
-          )
 
-print("message:", message)
+def test():
+  message = client.messages.create(
+              body='Hello There!',
+              from_=from_num,
+              to=to_num
+            )
+  print("message:", message)
+
+def send(encrypted_message):
+  message = client.messages.create(
+              body=encrypted_message,
+              from_=from_num,
+              to=to_num
+            )
+  print("message:", message)
+
+test()
+
