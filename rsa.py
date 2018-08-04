@@ -1,9 +1,9 @@
 import base64 
 from cryptography.hazmat.backends import default_backend
-from cryptography.hazmat.primitives.asymmetric import rsa, padding
 from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.asymmetric import rsa, padding
 
-def encrypt(message, public_key):
+def rsa_encrypt(message, public_key):
   cipher = public_key.encrypt(
       message,
       padding.OAEP(
@@ -14,8 +14,5 @@ def encrypt(message, public_key):
         label=None
         )
     )
-
   return str(base64.b64encode(cipher))
 
-def main():
-  print("encrypt")
