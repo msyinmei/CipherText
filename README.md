@@ -5,7 +5,7 @@ https://github.com/msyinmei/CipherText
 
 
 ###Git Fork & Clone
-1. Make sure you've set up your SSH Key:: 
+1. Make sure you've set up your SSH Key if you'd like to contribute to this code and have been invited as a collaborator: 
 https://help.github.com/articles/connecting-to-github-with-ssh/ 
 2. To copy the file into your local system, open up your terminal and type the following commands:  
 ```cd```  
