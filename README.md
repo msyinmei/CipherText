@@ -1,5 +1,11 @@
-<<<<<<< HEAD
 #CipherText
-=======
-#CipherText
->>>>>>> 5181c4c2a91fa308badc88c9764471772b4c8ed9
+
+Dependencies: 
+`pip install cryptography`
+https://cryptography.io/en/latest/
+`pip install twilio`
+https://www.twilio.com/docs/libraries/python
+
+GitIgnore:
+__pycache__
+AUTHKEYS.py 
