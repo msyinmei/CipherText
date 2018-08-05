@@ -28,13 +28,16 @@ def get_derived_key(info, sharedKey):
      length=32,
      salt = b'the random salt value as bytes',
      info = b'users name',
-     #I'd like to convert both into bytes. This is the dream:
+     # I'd like to convert both into bytes. This is the dream:
      # salt=bytes(salt, encoding='utf8'),
      # info=bytes(info, encoding='utf8'),
      backend=default_backend()
  ).derive(sharedKey)
 
 def handshake(sender_name):
+  # In a real handshake the pubkey_receiver will be received from the
+  # other party. For this example we'll generate some arbitrary private and public keys.
+  # Note that in a DH handshake both peers must agree on a common set of parameters.
   privkey_sender = private_key()
   pubkey_sender = privkey_sender.public_key()
 
