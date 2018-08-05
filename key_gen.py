@@ -19,16 +19,22 @@ def private_key():
 def get_shared_key(privKey, peerPubKey):
   return privKey.exchange(peerPubKey)
 
-def get_derived_key(sharedKey):
+#derivation function: HKDF
+#https://cryptography.io/en/latest/hazmat/primitives/key-derivation-functions/?highlight=HKDF#cryptography.hazmat.primitives.kdf.hkdf.HKDF
+def get_derived_key(info, sharedKey):
+  salt = os.urandom(16)
   return HKDF(
      algorithm=hashes.SHA256(),
      length=32,
-     salt=None,
-     info=b'handshake data',
+     salt = b'the random salt value as bytes',
+     info = b'users name',
+     #I'd like to convert both into bytes. This is the dream:
+     # salt=bytes(salt, encoding='utf8'),
+     # info=bytes(info, encoding='utf8'),
      backend=default_backend()
  ).derive(sharedKey)
 
-def handshake():
+def handshake(sender_name):
   privkey_sender = private_key()
   pubkey_sender = privkey_sender.public_key()
 
@@ -36,5 +42,5 @@ def handshake():
   pubkey_receiver = privkey_receiver.public_key()
 
   shared_key = get_shared_key(privkey_sender, pubkey_receiver)
-  derived_key = get_derived_key(shared_key)
+  derived_key = get_derived_key(sender_name, shared_key)
   return derived_key

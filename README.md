@@ -31,5 +31,9 @@ Install [Twilio](https://www.twilio.com/docs/libraries/python) module:
 
 ###How to run the main program: 
 In your terminal, run:  
-```cd CipherText``` (unless you're already there)
+```cd CipherText``` (unless you're already there)  
 ```python main.py```
+
+###How to run Twilio
+1. Rename AUTHKEY_TEMPLATE.py to AUTHKEYS.py and enter your own credentials
+2. run ```python twilio_sms.py```
