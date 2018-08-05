@@ -26,9 +26,9 @@ def get_derived_key(info, sharedKey):
   return HKDF(
      algorithm=hashes.SHA256(),
      length=32,
-     salt = b'the random salt value as bytes',
-     info = b'users name',
-     # I'd like to convert both into bytes. This is the dream:
+     salt = salt,
+     info = info,
+     # python3:
      # salt=bytes(salt, encoding='utf8'),
      # info=bytes(info, encoding='utf8'),
      backend=default_backend()
