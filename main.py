@@ -7,10 +7,10 @@ from cryptography.hazmat.primitives import hashes, hmac
 def utf8len(s):
     return len(s.encode('utf-8'))
 
-def hash(key, message_to_hash):
-  h = hmac.HMAC(key, hashes.SHA256(), backend=default_backend())
-  h.update(message_to_hash)
-  return h.finalize()
+# def hash(key, message_to_hash):
+#   h = hmac.HMAC(key, hashes.SHA256(), backend=default_backend())
+#   h.update(message_to_hash)
+#   return h
 
 def main():
   #Welcome
@@ -28,9 +28,10 @@ def main():
   
   #This is just information associated to the user, authenticated with the key but not encrypted.
   associated_data = b"This is the user_id, unique to the user from the company server"
-  authenticated_associated_data = hash(derived_key, associated_data)
+  # hashing does not work:
+  # associated_data = hash(derived_key, associated_data)
 
-  aesgcm_packet, aesgcm_nonce, ciphertext = aesgcm.encrypt(derived_key, message, authenticated_associated_data)
+  aesgcm_packet, aesgcm_nonce, ciphertext = aesgcm.encrypt(derived_key, message, associated_data)
   print(sender, "sent", ciphertext)
   
   #for demo purposes:
@@ -38,7 +39,10 @@ def main():
   #plaintext = twilio_sms.receive(ciphertext)
   #twilio_sms.send(plaintext)
 
-  plaintext = aesgcm.decrypt(aesgcm_packet, aesgcm_nonce, ciphertext, authenticated_associated_data)
-  print(receiver, "got", plaintext)
+
+  #check hash
+  # associated_data = associated_data.finalize()
+  plaintext = aesgcm.decrypt(aesgcm_packet, aesgcm_nonce, ciphertext, associated_data)
+  print(receiver, "got", plaintext, "associated_data:", associated_data)
 
 main()
