@@ -10,7 +10,7 @@ def encrypt(key, plaintext, associated_data):
   nonce = os.urandom(16) #never reuse a nonce with a key
   #associated_data is authenticated with the key but not encrypted.
   ciphertext = aesgcm.encrypt(nonce, plaintext, associated_data)
-  return ([aesgcm, nonce, ciphertext])
+  return (aesgcm, nonce, ciphertext)
 
 def decrypt(aesgcm, nonce, ciphertext, associated_data):
   return aesgcm.decrypt(nonce, ciphertext, associated_data)
