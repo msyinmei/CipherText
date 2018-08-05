@@ -21,8 +21,8 @@ def main():
 
   print("type of message:", type(message))
   
-  #Authentication needed here to generate a 128 bit-length tag
-  associated_data = b"This is the user_id, obtained only by the user"
+  #This is just information associated to the user
+  associated_data = b"This is the user_id, unique to the user from the company server"
 
   encrypted_packet = aesgcm.encrypt(derived_key, message, associated_data)
   ciphertext = encrypted_packet[2]
