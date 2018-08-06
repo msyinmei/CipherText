@@ -27,6 +27,9 @@ Upgrade Pip:
 
 Install [cryptography](https://cryptography.io/en/latest/) module:  
 ```pip install cryptography```
+
+Install dependencies for cryptography.io:
+(https://cryptography.io/en/latest/development/getting-started/?highlight=install)
   
 Install [Twilio](https://www.twilio.com/docs/libraries/python) module:  
 ```pip install twilio```  
