@@ -1,5 +1,6 @@
 #CipherText
-# MK Solution
+# MK Solution, Pending Prototype (Python 2.7)
+Recommended for Python3: https://github.com/Astute-Hero/CipherText-AH
 
 How to run this application:  
 https://github.com/msyinmei/CipherText 
