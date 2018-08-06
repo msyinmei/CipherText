@@ -1,8 +1,7 @@
 import key_gen
 import aesgcm
-import twilio_sms
 from cryptography.hazmat.backends import default_backend
-from cryptography.hazmat.primitives import hashes, hmac
+# from cryptography.hazmat.primitives import hashes, hmac
 
 def utf8len(s):
     return len(s.encode('utf-8'))
@@ -26,19 +25,13 @@ def main():
   message = (bytes(message, encoding='utf8') if not 
   isinstance(message, bytes) else message)
   
-  #This is just information associated to the user, authenticated with the key but not encrypted.
-  associated_data = b"This is the user_id, unique to the user from the company server"
+  #This is information associated to the user, authenticated with the key but not encrypted.
+  associated_data = b"This could be the user_id, unique to the user from the company server"
   # hashing does not work:
   # associated_data = hash(derived_key, associated_data)
 
   aesgcm_packet, aesgcm_nonce, ciphertext = aesgcm.encrypt(derived_key, message, associated_data)
   print(sender, "sent", ciphertext)
-  
-  #for demo purposes:
-  #twilio_sms.send(ciphertext)
-  #plaintext = twilio_sms.receive(ciphertext)
-  #twilio_sms.send(plaintext)
-
 
   #check hash
   # associated_data = associated_data.finalize()

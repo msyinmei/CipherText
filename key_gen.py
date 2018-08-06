@@ -1,24 +1,22 @@
 import os
 from cryptography.hazmat.backends import default_backend
-# from cryptography.hazmat.primitives.asymmetric import rsa
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric.x25519 import X25519PrivateKey
 from cryptography.hazmat.primitives.kdf.hkdf import HKDF
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 
-# def RSA_private_key():
-#   return rsa.generate_private_key(
-#     public_exponent = 65537,
-#     key_size = 2048,
-#     backend = default_backend()
-#     )
-
+#X25519 key generation
+#https://github.com/pyca/cryptography/blob/master/src/cryptography/hazmat/primitives/asymmetric/x25519.py
+#https://github.com/pyca/cryptography/blob/3cd630b325372c3ad05d9fb2ea816db13d9d8584/src/cryptography/hazmat/backends/openssl/backend.py#L1924 
 def private_key():
   return X25519PrivateKey.generate()
 
+#used in handshake, abstract method on X25519PrivateKey object
+#https://github.com/pyca/cryptography/blob/3cd630b325372c3ad05d9fb2ea816db13d9d8584/src/cryptography/hazmat/primitives/asymmetric/x25519.py#L52
 def get_shared_key(privKey, peerPubKey):
   return privKey.exchange(peerPubKey)
 
+#used in handshake
 #derivation function: HKDF
 #https://cryptography.io/en/latest/hazmat/primitives/key-derivation-functions/?highlight=HKDF#cryptography.hazmat.primitives.kdf.hkdf.HKDF
 def get_derived_key(info, sharedKey):

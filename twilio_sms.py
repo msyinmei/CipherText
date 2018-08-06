@@ -43,3 +43,9 @@ def main():
       continue_prompt = False
     else:
       print("Please choose either 1 or 2")
+
+
+#for demo purposes:
+#twilio_sms.send(ciphertext)
+#plaintext = twilio_sms.receive(ciphertext)
+#twilio_sms.send(plaintext)
