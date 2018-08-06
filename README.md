@@ -1,4 +1,4 @@
-#CipherText
+# CipherText
 # MK Solution, Pending Prototype (Python 2.7)
 Recommended for Python3: https://github.com/Astute-Hero/CipherText-AH
 
@@ -6,7 +6,7 @@ How to run this application:
 https://github.com/msyinmei/CipherText 
 
 
-###Git Fork & Clone
+### Git Fork & Clone
 1. Make sure you've set up your SSH Key if you'd like to contribute to this code and have been invited as a collaborator: 
 https://help.github.com/articles/connecting-to-github-with-ssh/ 
 2. To copy the file into your local system, open up your terminal and type the following commands:  
@@ -20,7 +20,7 @@ https://help.github.com/articles/connecting-to-github-with-ssh/
 4. Check that git is working:  
 ```git status```
 
-###Install Dependencies: 
+### Install Dependencies: 
 In your terminal, run the following commands to install the following dependencies: 
 Upgrade Pip:  
 ```pip install --upgrade pip```
@@ -31,11 +31,11 @@ Install [cryptography](https://cryptography.io/en/latest/) module:
 Install [Twilio](https://www.twilio.com/docs/libraries/python) module:  
 ```pip install twilio```  
 
-###How to run the main program: 
+### How to run the main program: 
 In your terminal, run:  
 ```cd CipherText``` (unless you're already there)  
 ```python main.py```
 
-###How to run Twilio
+### How to run Twilio
 1. Rename AUTHKEY_TEMPLATE.py to AUTHKEYS.py and enter your own credentials
 2. run ```python twilio_sms.py```
