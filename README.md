@@ -36,6 +36,13 @@ In your terminal, run:
 ```cd CipherText``` (unless you're already there)  
 ```python main.py```
 
+Sample:  
+![Sample Exchange using CipherText Program](https://github.com/msyinmei/CipherText/blob/master/Screen%20Shot%202018-08-06%20at%202.45.13%20AM.png)
+
+
 ### How to run Twilio
 1. Rename AUTHKEY_TEMPLATE.py to AUTHKEYS.py and enter your own credentials
 2. run ```python twilio_sms.py```
+
+
+
