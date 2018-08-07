@@ -26,15 +26,14 @@ def main():
   isinstance(message, bytes) else message)
   
   #This is information associated to the user, authenticated with the key but not encrypted.
+  #According to AESGCM, this associated_data must not be encrypted. 
   associated_data = b"This could be the user_id, unique to the user from the company server"
-  # hashing does not work:
-  # associated_data = hash(derived_key, associated_data)
 
+  #aesgcm.encrypt returns ciphertext bytes with the 16 byte tag appended
   aesgcm_packet, aesgcm_nonce, ciphertext = aesgcm.encrypt(derived_key, message, associated_data)
   print(sender, "sent", ciphertext)
 
-  #check hash
-  # associated_data = associated_data.finalize()
+  #aesgcm.decrypt takes the encrypted data with the 16 bit tag appended, and returns the original plaintext.
   plaintext = aesgcm.decrypt(aesgcm_packet, aesgcm_nonce, ciphertext, associated_data)
   print(receiver, "got", plaintext, "associated_data:", associated_data)
 

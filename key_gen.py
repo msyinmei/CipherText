@@ -16,8 +16,10 @@ def private_key():
 def get_shared_key(privKey, peerPubKey):
   return privKey.exchange(peerPubKey)
 
-#used in handshake
-#derivation function: HKDF
+#used in handshake, key derivation function: HKDF
+#KDFs can be used to stretch keys into longer keys or to obtain keys of a required format
+#such as converting a group element that is the result of a Diffie–Hellman key exchange
+#into a symmetric key for use with AES.
 #https://cryptography.io/en/latest/hazmat/primitives/key-derivation-functions/?highlight=HKDF#cryptography.hazmat.primitives.kdf.hkdf.HKDF
 def get_derived_key(info, sharedKey):
   salt = os.urandom(16)
